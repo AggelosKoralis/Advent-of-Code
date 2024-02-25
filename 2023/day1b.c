@@ -7,39 +7,53 @@
 
 #define MAX_LINE 256
 
+//the starting index will help figure out which to put first or last
 int find_words(char *line, int starting_idx) {
     //the number itself and how many pieces(letters) we have to collect to complete it
     int one3 = 0, two3 = 0, three5 = 0, four4 = 0, five4 = 0, six3 = 0, seven5 = 0, eight5 = 0, nine4 = 0;
     
+    int length = strlen(line);
     int i = starting_idx;
     //while i dont bump into a number loop
-    while (!(line[i] - '0' >= 0 && line[i] - '0' <= 9)) {
+    while (!(line[i] - '0' >= 0 && line[i] - '0' <= 9)) { //infinite loop maybe? idk
 
-        if (line[i] == 'o') {
-            one3++;
-            if (line[++i] == 'n') {
-                one3++;
-                if (line[++i] == 'e') {
-                    one3++;
-                }
-            }
+        //i have to make some fnctions like is_one() to clean tthis up a bit
+        if ((length >= i + 2) && (line[i] == 'o' && line[i + 1] == 'n' && line[i + 2] == 'e')) {
+            //one
         }
         else if (line[i] == 't') {
-
+            if ((length >= i + 2) && (line[i + 1] == 'w' && line[i + 2] == 'o')) {
+                //two
+            }
+            else if ((length >= i + 4) && (line[i + 1] == 'h' && line[i + 2] == 'r' && line[i + 3] == 'e' && line[i + 4] == 'e')) {
+                //three
+            }
         }
         else if (line[i] == 'f') {
-
+            if ((length >= i + 3) && (line[i + 1] == 'o' && line[i + 2] == 'u' && line[i + 3] == 'r')) {
+                //four
+            }
+            else if ((length >= i + 3) && (line[i + 1] == 'i' && line[i + 2] == 'v' && line[i + 3] == 'e')) {
+                //five
+            }
         }
         else if (line[i] == 's') {
-
+            if ((length >= i + 2) && (line[i + 1] == 'i' && line[i + 2] == 'x')) {
+                //six
+            }
+            else if ((length >= i + 4) && (line[i + 1] == 'e' && line[i + 2] == 'v' && line[i + 3] == 'e' && line[i + 4] == 'n')) {
+                //seven
+            }
         }
-        else if (line[i] == 'e') {
-
+        else if ((length >= i + 4) && (line[i] == 'e' && line[i + 1] == 'i' && line[i + 2] == 'g' && line[i + 3] == 'h' && line[i + 4] == 't')) {
+            //eight
         }
-        else if (line[i] == 'n') {
-
+        else if ((length >= i + 3) && (line[i] == 'n' && line[i + 1] == 'i' && line[i + 2] == 'n' && line[i + 3] == 'e')) {
+            //nine
         }
 
+        //go to the next character on th line and repeat the same process
+        i++;
     }
 }
 
