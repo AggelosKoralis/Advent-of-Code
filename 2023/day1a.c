@@ -48,6 +48,7 @@ int main(int argc, char **argv) {
         sum += find_nums(line);
     }
     printf("%d\n", sum);
+    free(line);
     fclose(text);
     return 0;
 }
