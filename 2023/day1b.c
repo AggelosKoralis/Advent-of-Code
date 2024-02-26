@@ -7,6 +7,42 @@
 
 #define MAX_LINE 256
 
+int one(char *line, int length, int i) {
+    return (length >= i + 2) && (line[i] == 'o' && line[i + 1] == 'n' && line[i + 2] == 'e');
+}
+
+int two(char *line, int length, int i) {
+    return (length >= i + 2) && (line[i + 1] == 'w' && line[i + 2] == 'o');
+}
+
+int three(char *line, int length, int i) {
+    return (length >= i + 4) && (line[i + 1] == 'h' && line[i + 2] == 'r' && line[i + 3] == 'e' && line[i + 4] == 'e');
+}
+
+int four(char *line, int length, int i) {
+    return (length >= i + 3) && (line[i + 1] == 'o' && line[i + 2] == 'u' && line[i + 3] == 'r');
+}
+
+int five(char *line, int length, int i) {
+    return (length >= i + 3) && (line[i + 1] == 'i' && line[i + 2] == 'v' && line[i + 3] == 'e');
+}
+
+int six(char *line, int length, int i) {
+    return (length >= i + 2) && (line[i + 1] == 'i' && line[i + 2] == 'x');
+}
+
+int seven(char *line, int length, int i) {
+    return (length >= i + 4) && (line[i + 1] == 'e' && line[i + 2] == 'v' && line[i + 3] == 'e' && line[i + 4] == 'n');
+}
+
+int eight(char *line, int length, int i) {
+    return (length >= i + 4) && (line[i] == 'e' && line[i + 1] == 'i' && line[i + 2] == 'g' && line[i + 3] == 'h' && line[i + 4] == 't');
+}
+
+int nine(char *line, int length, int i) {
+    return (length >= i + 3) && (line[i] == 'n' && line[i + 1] == 'i' && line[i + 2] == 'n' && line[i + 3] == 'e');
+}
+
 //the starting index will help figure out which to put first or last
 int find_words(char *line, int starting_idx) {
 
@@ -15,38 +51,37 @@ int find_words(char *line, int starting_idx) {
     //while i dont bump into a number loop
     //while (!(line[i] - '0' >= 0 && line[i] - '0' <= 9)) { //no loop? the loop is in the caller func
 
-        //i have to make some fnctions like is_one() to clean tthis up a bit
-        if ((length >= i + 2) && (line[i] == 'o' && line[i + 1] == 'n' && line[i + 2] == 'e')) {
+        if (one(line, length, i)) {
             //one
         }
         else if (line[i] == 't') {
-            if ((length >= i + 2) && (line[i + 1] == 'w' && line[i + 2] == 'o')) {
+            if (two(line, length, i)) {
                 //two
             }
-            else if ((length >= i + 4) && (line[i + 1] == 'h' && line[i + 2] == 'r' && line[i + 3] == 'e' && line[i + 4] == 'e')) {
+            else if (three(line, length, i)) {
                 //three
             }
         }
         else if (line[i] == 'f') {
-            if ((length >= i + 3) && (line[i + 1] == 'o' && line[i + 2] == 'u' && line[i + 3] == 'r')) {
+            if (four(line, length, i)) {
                 //four
             }
-            else if ((length >= i + 3) && (line[i + 1] == 'i' && line[i + 2] == 'v' && line[i + 3] == 'e')) {
+            else if (five(line, length, i)) {
                 //five
             }
         }
         else if (line[i] == 's') {
-            if ((length >= i + 2) && (line[i + 1] == 'i' && line[i + 2] == 'x')) {
+            if (six(line, length, i)) {
                 //six
             }
-            else if ((length >= i + 4) && (line[i + 1] == 'e' && line[i + 2] == 'v' && line[i + 3] == 'e' && line[i + 4] == 'n')) {
+            else if (seven(line, length, i)) {
                 //seven
             }
-        }
-        else if ((length >= i + 4) && (line[i] == 'e' && line[i + 1] == 'i' && line[i + 2] == 'g' && line[i + 3] == 'h' && line[i + 4] == 't')) {
+        }  
+        else if (eight(line, length, i)) {
             //eight
         }
-        else if ((length >= i + 3) && (line[i] == 'n' && line[i + 1] == 'i' && line[i + 2] == 'n' && line[i + 3] == 'e')) {
+        else if (nine(line, length, i)) {
             //nine
         }
 
