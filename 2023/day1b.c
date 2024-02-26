@@ -9,13 +9,11 @@
 
 //the starting index will help figure out which to put first or last
 int find_words(char *line, int starting_idx) {
-    //the number itself and how many pieces(letters) we have to collect to complete it
-    int one3 = 0, two3 = 0, three5 = 0, four4 = 0, five4 = 0, six3 = 0, seven5 = 0, eight5 = 0, nine4 = 0;
-    
+
     int length = strlen(line);
     int i = starting_idx;
     //while i dont bump into a number loop
-    while (!(line[i] - '0' >= 0 && line[i] - '0' <= 9)) { //infinite loop maybe? idk
+    //while (!(line[i] - '0' >= 0 && line[i] - '0' <= 9)) { //no loop? the loop is in the caller func
 
         //i have to make some fnctions like is_one() to clean tthis up a bit
         if ((length >= i + 2) && (line[i] == 'o' && line[i + 1] == 'n' && line[i + 2] == 'e')) {
@@ -52,9 +50,7 @@ int find_words(char *line, int starting_idx) {
             //nine
         }
 
-        //go to the next character on th line and repeat the same process
-        i++;
-    }
+    //}
 }
 
 int find_nums(char *line) {
