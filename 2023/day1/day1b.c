@@ -112,11 +112,13 @@ int find_nums(char *line) {
         }
         else if (isalpha(line[i])) {
             if (!first_word_found) {
-                first_word_found = 1;
-                first_word = find_words(line, i);
-                fw_idx = i;
-                last_word = first_word;
-                lw_idx = i;
+                if ((temp = find_words(line, i)) != -1) {
+                    first_word_found = 1;
+                    first_word = temp;
+                    fw_idx = i;
+                    last_word = first_word;
+                    lw_idx = i;
+                }
             }
             else {
                 if ((temp = find_words(line, i)) != -1) { //because if it didnt find a word lsat_word would get -1 from find_words()
@@ -126,8 +128,6 @@ int find_nums(char *line) {
             }
         }
     }
-    printf("fw: %d (idx: %d)     lw: %d (idx: %d)\n", first_word, fw_idx, last_word, lw_idx);
-
     int first, last;
 
     //find which one to keep as first
@@ -142,7 +142,7 @@ int find_nums(char *line) {
     else if (lw_idx == -1 || ln_idx > lw_idx) 
         last = last_num;
 
-    printf("final first: %d   final last: %d\n", first, last);
+
     return 10 * first + last;
 }
 
