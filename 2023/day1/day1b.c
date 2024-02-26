@@ -43,7 +43,7 @@ int nine(char *line, int length, int i) {
     return (length >= i + 3) && (line[i] == 'n' && line[i + 1] == 'i' && line[i + 2] == 'n' && line[i + 3] == 'e');
 }
 
-//the starting index will help figure out which to put first or last
+//the starting index will help figure out which to put first or last    i think
 int find_words(char *line, int starting_idx) {
 
     int length = strlen(line);
@@ -52,63 +52,80 @@ int find_words(char *line, int starting_idx) {
     //while (!(line[i] - '0' >= 0 && line[i] - '0' <= 9)) { //no loop? the loop is in the caller func
 
         if (one(line, length, i)) {
-            //one
+            return 1;
         }
         else if (line[i] == 't') {
             if (two(line, length, i)) {
-                //two
+                return 2;
             }
             else if (three(line, length, i)) {
-                //three
+                return 3;
             }
         }
         else if (line[i] == 'f') {
             if (four(line, length, i)) {
-                //four
+                return 4;
             }
             else if (five(line, length, i)) {
-                //five
+                return 5;
             }
         }
         else if (line[i] == 's') {
             if (six(line, length, i)) {
-                //six
+                return 6;
             }
             else if (seven(line, length, i)) {
-                //seven
+                return 7;
             }
         }  
         else if (eight(line, length, i)) {
-            //eight
+            return 8;
         }
         else if (nine(line, length, i)) {
-            //nine
+            return 9;
         }
 
     //}
+    return -1; //no word found
 }
 
 int find_nums(char *line) {
-    int first, last;
-    int first_found = 0;
+    int first_num, last_num;
+    int first_num_found = 0;
+
+    int first_word, last_word;
+    int first_word_found = 0;
+    int fw_idx = -1, lw_idx = -1; //indices of the first/last word
+    int temp; //used to absorb error value of find_words()
 
     for (int i = 0; line[i] != '\0'; i++) {
         if (line[i] - '0' >= 0 && line[i] - '0' <= 9) {
-            if (!first_found) {
-                first_found = 1;
-                first = line[i] - '0';
-                last = line[i] - '0';
+            if (!first_num_found) {
+                first_num_found = 1;
+                first_num = line[i] - '0';
+                last_num = line[i] - '0';
             }
             else {
-                last = line[i] - '0';
+                last_num = line[i] - '0';
             }
         }
         else if (isalpha(line[i])) {
-            find_words(line, i);
+            if (!first_word_found) {
+                first_word = find_words(line, i);
+                last_word = first_word;
+                first_word_found = 1;
+            }
+            else {
+                if ((temp = find_words(line, i)) != -1) { //because if it didnt find a word lsat_word would get -1 from find_words()
+                    last_word = temp;
+                }
+            }
         }
+
+
     }
 
-    return 10 * first + last;
+    return 10 * first_num + last_num;
 }
 
 int main(int argc, char **argv) {
