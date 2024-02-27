@@ -63,6 +63,7 @@ int main(int argc, char **argv) {
         fprintf(stderr, "malloc failed\n");
         return 1;
     }
+    
 
     int id = 1; //i dont have to find the id in the text, i can just increment it every iteration
     int sum = 0; //sum of the ids
