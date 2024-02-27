@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 //12 red | 13 green | 14 blue
 
-#define MAX_LINE 1024
+#define MAX_LINE 256
 
 int is_num(char c) {
     return c - '0' >= 0 && c - '0' <= 9;
@@ -13,8 +14,8 @@ int is_num(char c) {
 //1 if possible 0 if not
 int possible(char *line) {
     int num;
-    int i = 8;
-    while (line[i] != '\n') { //first number occurs at i = 8 always
+    int i = 8; //first number occurs at i = 8 always
+    while (i < strlen(line) - 1) {
         if (is_num(line[i]) && is_num(line[i + 1])) {
             //3-digit number is impossible
             if (is_num(line[i + 2])) {
