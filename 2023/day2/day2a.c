@@ -71,7 +71,6 @@ int main(int argc, char **argv) {
 
     while (fscanf(text, "%[^\n]\n", line) != EOF) { //read up to a newline
         if (possible(line)) {
-            printf("ids in sum: %d\n", id);
             sum += id;
         }
         id++;
