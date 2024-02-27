@@ -12,9 +12,12 @@ int is_num(char c) {
 }
 
 //1 if possible 0 if not
-int possible(char *line) {
+int possible(char *line, int id) {
     int num;
-    int i = 8; //first number occurs at i = 8 always
+
+    //init i with 8 to start after the number of the game
+    int i = 8; 
+
     while (i < strlen(line) - 1) {
         if (is_num(line[i]) && is_num(line[i + 1])) {
             //3-digit number is impossible
@@ -38,7 +41,6 @@ int possible(char *line) {
             
             i += 2; //increment by 2 to skip he second digit
         }
-        printf("%c\n", line[i]);
         i++; //if not a number, go to the next character
     }
     return 1;
@@ -65,8 +67,9 @@ int main(int argc, char **argv) {
     int id = 1; //i dont have to find the id in the text, i can just increment it every iteration
     int sum = 0; //sum of the ids
 
-    while (fscanf(text, "%[^\n]", line) != EOF) { //read up to a newline
-        if (possible(line)) {
+    while (fscanf(text, "%[^\n]\n", line) != EOF) { //read up to a newline
+        if (possible(line, id)) {
+            printf("ids in sum: %d\n", id);
             sum += id;
         }
         id++;
