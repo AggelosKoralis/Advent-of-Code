@@ -12,10 +12,10 @@ int is_num(char c) {
 }
 
 //1 if possible 0 if not
-int possible(char *line, int id) {
+int possible(char *line) {
     int num;
 
-    //init i with 8 to start after the number of the game
+    //init i with 8 to start after the id of the game
     int i = 8; 
 
     while (i < strlen(line) - 1) {
@@ -25,7 +25,8 @@ int possible(char *line, int id) {
                 return 0; 
             }
 
-            num = 10 * line[i] + line[i + 1];
+            num = 10 * (line[i] - '0') + (line[i + 1] - '0');
+
             if (line[i + 3] == 'b' && num > 14) { //i + 3 is the 1st letter when we have 2 digits
                 //blue
                 return 0;
@@ -63,13 +64,13 @@ int main(int argc, char **argv) {
         fprintf(stderr, "malloc failed\n");
         return 1;
     }
-    
+
 
     int id = 1; //i dont have to find the id in the text, i can just increment it every iteration
     int sum = 0; //sum of the ids
 
     while (fscanf(text, "%[^\n]\n", line) != EOF) { //read up to a newline
-        if (possible(line, id)) {
+        if (possible(line)) {
             printf("ids in sum: %d\n", id);
             sum += id;
         }
