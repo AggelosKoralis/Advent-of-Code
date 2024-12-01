@@ -5,8 +5,7 @@ using namespace std;
 
 
 int main(void) {
-    vector<int> a;
-    vector<int> b;
+    vector<int> a, b;
 
     int i = 0;
     int x, y;
@@ -16,32 +15,25 @@ int main(void) {
             i++;
     }
 
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end());
+    //sort(a.begin(), a.end());
+    //sort(b.begin(), b.end());
     
+    // number : occurences
     map<int, int> mapA, mapB;
-
-    for (i = 0; i < a.size(); i++) {
-        mapA[a[i]] = 0;
-        
+    
+    for (i = 0; i < b.size(); i++)
         mapB[b[i]] = 0;
-    }
    
 
-    for (i = 0; i < a.size(); i++) {
-        mapA[a[i]]++;
+    for (i = 0; i < b.size(); i++)
         mapB[b[i]]++;
-    }
-    
 
-    int similarity = 0;
-    int sum = 0;
+    int similarity = 0;    
+
     for (i = 0; i < a.size(); i++) {
-        sum += abs(a[i] - b[i]);
         similarity += mapB[a[i]] * a[i];
     }
-    
-    cout << "distance: " << sum << endl;
+
     cout << "similarity: " << similarity << endl;
 
     return 0;
