@@ -5,16 +5,18 @@
 
 using namespace std;
 
-int run(int target, vector<int> nums) {
+typedef unsigned long long int ull;
+
+ull run(ull target, vector<ull> nums) {
 
     if (nums.size() == 1)
         return (nums[0] == target) ? target : 0;
 
-    int n2 = nums[1];
+    ull n2 = nums[1];
     nums.erase(nums.begin() + 1); //erase 2nd num 
     
-    int add = nums[0] + n2;
-    int mul = nums[0] * n2;
+    ull add = nums[0] + n2;
+    ull mul = nums[0] * n2;
     
     nums[0] = add;
     if (run(target, nums) == target) return target;
@@ -27,17 +29,17 @@ int run(int target, vector<int> nums) {
 
 
 int main() {
-    long res = 0;
-    int target = 0;
+    ull res = 0;
+    ull target = 0;
 
     string rest;
 
-    while (scanf("%d: ", &target) != EOF) {
+    while (scanf("%llu: ", &target) != EOF) {
         getline(cin, rest);
 
         istringstream line(rest);
-        vector<int> nums;
-        int x;
+        vector<ull> nums;
+        ull x;
 
         while (line >> x) 
             nums.push_back(x);
@@ -46,6 +48,5 @@ int main() {
     }
 
     cout << "callibration result: " << res << endl;
-
     return 0;
 }
